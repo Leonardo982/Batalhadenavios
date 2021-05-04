@@ -1,133 +1,210 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://sprites/pngegg.png" type="Texture" id=1]
-[ext_resource path="res://sprites/CANHÂO.png" type="Texture" id=3]
-[ext_resource path="res://Scripts/Canhão.gd" type="Script" id=4]
-[ext_resource path="res://sprites/kisspng-blue-sky-area-font-beach-ocean-5a868dc26a8537.3325894115187675544363.png" type="Texture" id=5]
-[ext_resource path="res://Vidas.gd" type="Script" id=6]
-[ext_resource path="res://sprites/coracoes.png" type="Texture" id=7]
+[ext_resource path="res://sprites/Navio.png" type="Texture" id=1]
+[ext_resource path="res://sprites/ocean.png" type="Texture" id=2]
+[ext_resource path="res://NavioP1.gd" type="Script" id=3]
+[ext_resource path="res://sprites/skulls.png" type="Texture" id=4]
+[ext_resource path="res://sprites/canhão.png" type="Texture" id=5]
 
-[sub_resource type="GDScript" id=1]
-script/source = "extends KinematicBody2D
-onready var vidas = $Vidas.visible
-func _ready():
-	pass # Replace with function body.
-
-
-func _on_Button_pressed():
-	hide()
-"
-
-[sub_resource type="CircleShape2D" id=2]
-
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=7]
+resource_name = "Canhão"
 length = 3.0
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Cannon:rotation_degrees")
+tracks/0/path = NodePath(".:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1.5, 3 ),
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -43.0, -10.0 ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "Caturro"
+length = 3.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Navio:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ 30.0, -30.0, 30.0 ]
+"values": [ 0.0, 1.0, -1.0 ]
 }
 
-[node name="NavioP1" type="KinematicBody2D"]
-script = SubResource( 1 )
-
-[node name="ColorRect" type="ColorRect" parent="."]
-margin_left = -1.0
-margin_top = 1.0
-margin_right = 1279.0
-margin_bottom = 720.0
-__meta__ = {
-"_edit_use_anchors_": false
+[sub_resource type="Animation" id=2]
+resource_name = "Ondas"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("ocean:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 511.524, 299.233 ), Vector2( 511.524, 302 ) ]
 }
 
-[node name="Sprite" type="Sprite" parent="ColorRect"]
-position = Vector2( 640.337, 360.204 )
-scale = Vector2( 0.441259, 0.717959 )
-texture = ExtResource( 5 )
+[sub_resource type="Animation" id=3]
+resource_name = "morte"
+length = 1.8
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 2,
+"values": [ Vector2( 0, 0 ), Vector2( 7, 0 ), Vector2( 4, 0 ), Vector2( 5, 0 ) ]
+}
 
-[node name="Canhão" type="Area2D" parent="."]
-position = Vector2( 0, 16.9897 )
-script = ExtResource( 4 )
+[sub_resource type="Animation" id=4]
+resource_name = "morte"
+length = 1.8
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 2,
+"values": [ Vector2( 0, 0 ), Vector2( 7, 0 ), Vector2( 4, 0 ), Vector2( 5, 0 ) ]
+}
 
-[node name="Cannon" type="Sprite" parent="Canhão"]
-position = Vector2( 115.422, 422.726 )
-rotation = -0.423657
-scale = Vector2( 0.112701, 0.112949 )
-texture = ExtResource( 3 )
-offset = Vector2( 15, -200 )
+[sub_resource type="Animation" id=5]
+resource_name = "morte"
+length = 1.8
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 2,
+"values": [ Vector2( 0, 0 ), Vector2( 7, 0 ), Vector2( 4, 0 ), Vector2( 5, 0 ) ]
+}
 
-[node name="Corpocannon" type="CollisionShape2D" parent="Canhão"]
-position = Vector2( 120.322, 426.674 )
-shape = SubResource( 2 )
+[sub_resource type="Animation" id=6]
+resource_name = "morte"
+length = 1.8
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 2,
+"values": [ Vector2( 0, 0 ), Vector2( 7, 0 ), Vector2( 4, 0 ), Vector2( 5, 0 ) ]
+}
 
-[node name="angulo" type="AnimationPlayer" parent="Canhão"]
-anims/3 = SubResource( 3 )
+[node name="Navio" type="KinematicBody2D"]
+script = ExtResource( 3 )
+speed = null
+
+[node name="ocean" type="Sprite" parent="."]
+position = Vector2( 511.524, 299.233 )
+scale = Vector2( 1.14902, 0.98846 )
+texture = ExtResource( 2 )
 
 [node name="Navio" type="Sprite" parent="."]
-position = Vector2( 104.78, 451.258 )
-scale = Vector2( 0.250097, 0.240544 )
+position = Vector2( 156.873, 401.786 )
+rotation = -0.0349066
+scale = Vector2( 0.39247, 0.40779 )
 texture = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
 
-[node name="Navio1" type="CollisionPolygon2D" parent="."]
-position = Vector2( -22.475, -100 )
-polygon = PoolVector2Array( 26.7552, 522.339, 49.2059, 560.523, 68.6513, 540.724, 55.0395, 534.713, 57.6911, 529.41 )
+[node name="Canhao" type="Sprite" parent="Navio"]
+position = Vector2( 203.028, 150.616 )
+rotation = -0.21994
+scale = Vector2( 0.67138, 0.579499 )
+texture = ExtResource( 5 )
+offset = Vector2( 119, -53 )
 
-[node name="Navio2" type="CollisionPolygon2D" parent="."]
-position = Vector2( -22.475, -100 )
-polygon = PoolVector2Array( 68.6454, 540.473, 125.886, 568.091, 125.663, 596.377, 125.886, 597.936, 70.6499, 596.822, 49.4911, 560.295 )
+[node name="Angulo" type="AnimationPlayer" parent="Navio/Canhao"]
+"anims/Canhão" = SubResource( 7 )
 
-[node name="Navio3" type="CollisionPolygon2D" parent="."]
-position = Vector2( -22.475, -100 )
-polygon = PoolVector2Array( 183.176, 541.957, 202.467, 564.806, 226.814, 522.666, 197.784, 529.971, 199.47, 535.402 )
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PoolVector2Array( 79.041, 392.46, 79.041, 397.715, 113.997, 392.126, 115.999, 380.863, 115.165, 375.273, 114.581, 371.519, 118.352, 358.993, 117.722, 371.277, 123.865, 370.175, 124.652, 373.482, 164.182, 388.444, 167.332, 376.159, 167.017, 388.286, 171.899, 387.184, 174.734, 399.783, 213.167, 474.271, 198.6, 484.601, 198.865, 488.839, 193.302, 489.369, 192.773, 495.196, 190.389, 497.844, 190.389, 499.963, 179.794, 511.617, 177.41, 516.385, 176.351, 517.709, 170.524, 519.298, 118.875, 519.034, 71.1992, 519.298, 69.0803, 517.444, 62.9884, 519.298, 62.9884, 512.147, 65.9019, 506.585, 60.3398, 503.671, 60.9545, 500.493, 55.101, 498.509, 54.6049, 492.457, 54.1089, 489.48, 54.9026, 486.305, 55.5971, 482.635, 54.9026, 479.956, 53.5136, 477.872, 52.6207, 476.384, 50.5372, 474.698, 50.1404, 474.499, 49.3467, 473.11, 52.4222, 473.011, 54.9026, 472.416, 54.4065, 470.63, 49.1482, 469.935, 45.3782, 469.538, 40.616, 469.142, 40.3183, 467.951, 43.4931, 466.959, 47.8585, 459.518, 57.7166, 434.537, 56.1256, 431.532, 57.7166, 431.532, 76.455, 413.678, 73.4498, 413.501, 76.1014, 412.263, 75.9246, 409.258, 76.455, 403.425, 76.455, 400.419, 74.3336, 400.419, 78.9298, 397.768 )
 
-[node name="Navio4" type="CollisionPolygon2D" parent="."]
-position = Vector2( -22.475, -100 )
-polygon = PoolVector2Array( 182.801, 541.957, 126.615, 568.552, 125.678, 598.331, 181.678, 597.956, 202.467, 564.432 )
+[node name="Caturro" type="AnimationPlayer" parent="."]
+anims/Caturro = SubResource( 1 )
 
-[node name="Navio5" type="CollisionPolygon2D" parent="."]
-position = Vector2( -22.475, -100 )
-polygon = PoolVector2Array( 122.682, 503.937, 91.7791, 550.385, 126.053, 567.428, 160.701, 551.883 )
+[node name="Ondas" type="AnimationPlayer" parent="."]
+anims/Ondas = SubResource( 2 )
 
-[node name="Vidas" type="Sprite" parent="."]
-script = ExtResource( 6 )
+[node name="Caveira" type="Sprite" parent="."]
+position = Vector2( 31.2337, 567.081 )
+texture = ExtResource( 4 )
+vframes = 7
+hframes = 12
 
-[node name="coracoes" type="Sprite" parent="Vidas"]
-position = Vector2( 40.4957, 70.1263 )
-scale = Vector2( 0.166923, 0.166923 )
-texture = ExtResource( 7 )
+[node name="morte" type="AnimationPlayer" parent="Caveira"]
+anims/morte = SubResource( 3 )
 
-[node name="coracoes2" type="Sprite" parent="Vidas"]
-position = Vector2( 118.983, 70.7209 )
-scale = Vector2( 0.166923, 0.166923 )
-texture = ExtResource( 7 )
+[node name="Caveira2" type="Sprite" parent="."]
+position = Vector2( 64.7546, 566.366 )
+texture = ExtResource( 4 )
+vframes = 7
+hframes = 12
+frame = 1
 
-[node name="coracoes3" type="Sprite" parent="Vidas"]
-position = Vector2( 197.471, 71.9101 )
-scale = Vector2( 0.166923, 0.166923 )
-texture = ExtResource( 7 )
+[node name="morte" type="AnimationPlayer" parent="Caveira2"]
+anims/morte = SubResource( 4 )
 
-[node name="coracoes4" type="Sprite" parent="Vidas"]
-position = Vector2( 276.553, 71.9101 )
-scale = Vector2( 0.166923, 0.166923 )
-texture = ExtResource( 7 )
+[node name="Caveira3" type="Sprite" parent="."]
+position = Vector2( 96.116, 565.643 )
+texture = ExtResource( 4 )
+vframes = 7
+hframes = 12
+frame = 1
 
-[node name="coracoes5" type="Sprite" parent="Vidas"]
-position = Vector2( 356.23, 71.9101 )
-scale = Vector2( 0.166923, 0.166923 )
-texture = ExtResource( 7 )
+[node name="morte" type="AnimationPlayer" parent="Caveira3"]
+anims/morte = SubResource( 5 )
+
+[node name="Caveira4" type="Sprite" parent="."]
+position = Vector2( 128.152, 565.118 )
+texture = ExtResource( 4 )
+vframes = 7
+hframes = 12
+frame = 5
+
+[node name="morte" type="AnimationPlayer" parent="Caveira4"]
+anims/morte = SubResource( 6 )
 
 [node name="Button" type="Button" parent="."]
-margin_right = 12.0
-margin_bottom = 20.0
+margin_left = 167.0
+margin_top = 551.0
+margin_right = 258.0
+margin_bottom = 571.0
+text = "FIRE"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="Button" to="Vidas" method="_on_Button_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
