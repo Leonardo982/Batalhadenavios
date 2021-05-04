@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
+[ext_resource path="res://sprites/kisspng-blue-sky-area-font-beach-ocean-5a868dc26a8537.3325894115187675544363.png" type="Texture" id=2]
+
+[node name="Game" type="Node2D"]
+position = Vector2( 0, -2.37842 )
+script = ExtResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 639.793, 363.897 )
+
+[node name="Fundo" type="Sprite" parent="."]
+position = Vector2( 639.537, 362.505 )
+scale = Vector2( 0.44154, 0.719161 )
+texture = ExtResource( 2 )
+
+[node name="P1" type="Position2D" parent="."]
+position = Vector2( 207.335, 491.207 )
+
+[node name="P2" type="Position2D" parent="."]
+position = Vector2( 1097.91, 496.941 )
